@@ -1,181 +1,974 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
 <head>
-    <title>Mi Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariem Ben Blal — Diseñadora Web & Creadora de Contenido</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --charcoal: #1A1A1A;
+      --warm-black: #111009;
+      --gold: #B8933F;
+      --gold-light: #D4AA5A;
+      --muted: #6B6357;
+      --border: rgba(184,147,63,0.25);
+    }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f4f4f4;
-        }
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+html { scroll-behavior: smooth; }
 
-        .container {
-            padding: 40px;
-            text-align: center;
-        }
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+/* ── CURSOR ── */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, width 0.2s, height 0.2s;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s ease, opacity 0.2s;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
 
-        button {
-            background: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+/* ── HEADER / NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.6rem 4rem;
+  background: rgba(245,240,232,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--charcoal);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.4rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--gold); }
 
-        button:hover {
-            background: #0056b3;
-        }
-        <!DOCTYPE html>
-<html>
-<head>
-    <title>Mi Portfolio</title>
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 4rem;
+  padding-top: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 85% 40%, rgba(184,147,63,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 90%, rgba(184,147,63,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f4f4f4;
-        }
+.hero-text { padding-right: 4rem; }
 
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+.hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s forwards;
+}
 
-        .container {
-            padding: 40px;
-            text-align: center;
-        }
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--charcoal);
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--gold);
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s forwards;
+}
 
-        button {
-            background: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.hero-desc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #4A4540;
+  max-width: 42ch;
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.65s forwards;
+}
 
-        button:hover {
-            background: #0056b3;
-        }
-        MENÚ */
+.hero-langs {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.8s forwards;
+}
+.lang-badge {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: rgba(184,147,63,0.06);
+}
 
-        .menu {
+.hero-cta {
+  display: flex; gap: 1.2rem; align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.95s forwards;
+}
+.btn-primary {
+  padding: 0.9rem 2.2rem;
+  background: var(--charcoal);
+  color: var(--cream);
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+}
+.btn-primary:hover { background: var(--gold); }
+.btn-ghost {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
 
-            background: #222;
+/* Hero visual */
+.hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.6s forwards;
+}
+.hero-frame {
+  width: 380px; height: 460px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #E8E0D0 0%, #D4C9B8 100%);
+}
+.hero-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(184,147,63,0.08) 39px,
+      rgba(184,147,63,0.08) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(184,147,63,0.08) 39px,
+      rgba(184,147,63,0.08) 40px
+    );
+}
+.hero-monogram {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11rem;
+  font-weight: 300;
+  color: rgba(184,147,63,0.18);
+  line-height: 1;
+  user-select: none;
+}
+.hero-frame-label {
+  position: absolute;
+  bottom: 1.5rem; right: 1.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-frame-accent {
+  position: absolute;
+  top: -20px; left: -20px;
+  width: 60px; height: 60px;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+}
+.hero-frame-accent2 {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 60px; height: 60px;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
 
-            padding: 15px;
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollDrop 1.8s 2s infinite;
+}
 
-            text-align: center;
+/* ── SECTION BASE ── */
+section { padding: 7rem 4rem; }
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.divider {
+  width: 48px; height: 1px;
+  background: var(--gold);
+  margin-bottom: 3rem;
+}
 
-        }
+/* ── SERVICES ── */
+.services { background: var(--charcoal); color: var(--cream); }
+.services .section-title { color: var(--cream); }
+.services .divider { background: var(--gold); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 3rem;
+}
+.service-card {
+  padding: 2.8rem 2.4rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,147,63,0.15);
+  transition: background 0.3s, border-color 0.3s;
+  cursor: default;
+}
+.service-card:hover {
+  background: rgba(184,147,63,0.06);
+  border-color: rgba(184,147,63,0.4);
+}
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: rgba(184,147,63,0.25);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+.service-desc {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.55);
+}
+.service-tags {
+  margin-top: 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.service-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(184,147,63,0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 1px;
+}
 
-        .menu a {
+/* ── PORTFOLIO ── */
+.portfolio { background: var(--cream); }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.portfolio-item:first-child { grid-row: span 2; }
+.portfolio-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #D4C9B8 0%, #C2B49E 100%);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.portfolio-item:first-child .portfolio-thumb { aspect-ratio: 3/4; }
+.portfolio-item:hover .portfolio-thumb { transform: scale(1.03); }
+.portfolio-thumb-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(184,147,63,0.3);
+}
+.portfolio-thumb-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(184,147,63,0.06) 20px, rgba(184,147,63,0.06) 21px);
+}
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: rgba(17,16,9,0.75);
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: flex-end;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+}
+.portfolio-overlay p {
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.7);
+}
+.portfolio-meta {
+  padding: 1rem 0 0;
+}
+.portfolio-meta h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--charcoal);
+}
+.portfolio-meta span {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
 
-            color: white;
+/* ── LANGUAGES ── */
+.languages {
+  background: linear-gradient(135deg, #F0E8D8 0%, #E8DEC8 100%);
+  position: relative;
+  overflow: hidden;
+}
+.languages::before {
+  content: 'لغة';
+  position: absolute;
+  right: -1rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  color: rgba(184,147,63,0.07);
+  line-height: 1;
+  pointer-events: none;
+}
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.lang-card {
+  padding: 2.5rem;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+}
+.lang-flag {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.lang-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 0.3rem;
+}
+.lang-native {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.lang-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.lang-level {
+  margin-top: 1.2rem;
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.lang-level-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  border-radius: 1px;
+}
 
-            text-decoration: none;
+/* ── ABOUT ── */
+.about {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  padding: 7rem 4rem;
+}
+.about-visual {
+  position: relative;
+}
+.about-quote-block {
+  padding: 3rem;
+  background: var(--charcoal);
+  color: var(--cream);
+  position: relative;
+}
+.about-quote-block::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem;
+  color: var(--gold);
+  opacity: 0.3;
+  position: absolute;
+  top: -1rem; left: 1.5rem;
+  line-height: 1;
+}
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--cream);
+  position: relative;
+  z-index: 1;
+}
+.about-quote-author {
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.about-accent-box {
+  position: absolute;
+  bottom: -1.5rem; right: -1.5rem;
+  width: 80px; height: 80px;
+  border: 1px solid var(--border);
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--gold);
+}
+.about-text .section-label { margin-top: 0; }
+.about-desc {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #4A4540;
+  margin-bottom: 2rem;
+}
+.about-stats {
+  display: flex; gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
 
-            margin: 15px;
+/* ── CONTACT ── */
+.contact { background: var(--warm-black); color: var(--cream); text-align: center; }
+.contact .section-label { color: var(--gold); }
+.contact .section-title { color: var(--cream); }
+.contact .divider { margin: 0 auto 3rem; }
+.contact-desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.6);
+  max-width: 50ch;
+  margin: 0 auto 3rem;
+}
+.contact-links {
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(184,147,63,0.3);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.contact-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184,147,63,0.05);
+}
 
-            font-size: 18px;
+/* ── FOOTER ── */
+footer {
+  background: var(--warm-black);
+  padding: 1.5rem 4rem;
+  border-top: 1px solid rgba(184,147,63,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(245,240,232,0.3);
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: rgba(245,240,232,0.4);
+  text-decoration: none;
+}
 
-        }
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+}
 
-        .menu a:hover {
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
 
-            color: #00bfff;
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  .hero-text { padding-right: 0; }
+  .hero-visual { display: none; }
+  section { padding: 5rem 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-item:first-child { grid-row: auto; }
+  .lang-grid { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+  footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+```
 
-        }
-
-        /* SECCIONES */
-
-        section {
-
-            padding: 60px;
-
-             text-align: center; }
-    </style>
-
+  </style>
 </head>
 <body>
 
-<header>
-   <h1>Mariem Ben Blal</h1>
-   <div class="menu">
-    <a href="#incio">Incio</a>
-    <a href="#sobre">Sobre me</a>
-    <a href="#contacto">Contacto</a>
-   </div>
-    <section id="inicio">
-        <h2>Bienvenido</h2>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-    </section>
-    <section id="Sobre">
-<h2>estoy aprendiendo desarrolllo web</h2>
-    </section>
-    <section id="contacto">
-<h2>sobre mi</h2>
-<p>Escribeme para trabajar juntos</p>
-    </section>
-   <img src="img.jpg"" srcset="" width="150" style="border-radius: 50%">
-    <p>Desarrollador Web | Traductor</p>
-</header>
+  <!-- NAV -->
 
-<div class="container">
+  <nav>
+    <a href="#" class="nav-logo">M.B.B.</a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#idiomas">Idiomas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 
-    <div class="card">
-        <h2>Sobre mí</h2>
-        <p>Hablo árabe y español. Estoy aprendiendo programación web.</p>
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Diseñadora Web & Creadora · Certificada desde 2024</p>
+      <h1 class="hero-name">Mariem<br /><em>Ben Blal</em></h1>
+      <p class="hero-title">Creadora de experiencias digitales en 4 idiomas</p>
+      <p class="hero-desc">
+        Diseño y creo páginas web profesionales con certificación oficial desde 2024. Hablo árabe de forma nativa, español a nivel avanzado, inglés y francés a nivel medio — lo que me permite trabajar con clientes de todo el mundo.
+      </p>
+      <div class="hero-langs">
+        <span class="lang-badge">العربية · Nativo</span>
+        <span class="lang-badge">Español · Avanzado</span>
+        <span class="lang-badge">English · Medio</span>
+        <span class="lang-badge">Français · Medio</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contacto" class="btn-primary">Trabajemos juntos</a>
+        <a href="#portfolio" class="btn-ghost">Ver mi trabajo</a>
+      </div>
     </div>
-
-    <div class="card">
-        <h2>Servicios</h2>
-        <p>Creación de páginas web simples y traducciones.</p>
+    <div class="hero-visual">
+      <div class="hero-frame-accent"></div>
+      <div class="hero-frame">
+        <div class="hero-monogram">M</div>
+        <span class="hero-frame-label">Est. 2024</span>
+      </div>
+      <div class="hero-frame-accent2"></div>
     </div>
-                                                                                                                                                                                 
-    <div class="card">
-        <h2>Contacto</h2>
-        <button onclick="contacto()">Contáctame</button>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
+  </section>
 
-</div>
+  <!-- SERVICES -->
 
-<script>
-function contacto() {
-    alert("Puedes contactarme por Fiverr");
-}
-</script>
+  <section class="services" id="servicios">
+    <div class="reveal">
+      <p class="section-label">Lo que ofrezco</p>
+      <h2 class="section-title">Servicios <em>especializados</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Diseño Web</h3>
+        <p class="service-desc">Creación de sitios web elegantes, funcionales y adaptados a cada dispositivo. Diseño páginas desde cero con certificación oficial desde 2024.</p>
+        <div class="service-tags">
+          <span class="service-tag">UI/UX</span>
+          <span class="service-tag">Responsive</span>
+          <span class="service-tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <h3 class="service-name">Creación de Contenido</h3>
+        <p class="service-desc">Creación de contenido digital atractivo y profesional en árabe, español, inglés y francés para redes sociales, webs y campañas.</p>
+        <div class="service-tags">
+          <span class="service-tag">Contenido</span>
+          <span class="service-tag">Multilingüe</span>
+          <span class="service-tag">Digital</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Proyectos Multilingües</h3>
+        <p class="service-desc">Webs y proyectos digitales adaptados a mercados árabes, hispanohablantes, anglófonos y francófonos. Tu negocio sin barreras lingüísticas.</p>
+        <div class="service-tags">
+          <span class="service-tag">AR · ES · EN · FR</span>
+          <span class="service-tag">Localización</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+
+  <section class="portfolio" id="portfolio">
+    <div class="reveal">
+      <p class="section-label">Proyectos seleccionados</p>
+      <h2 class="section-title">Mi <em>trabajo</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-pattern"></div>
+          <div class="portfolio-thumb-inner">✦</div>
+          <div class="portfolio-overlay">
+            <h3>Sitio Corporativo Bilingüe</h3>
+            <p>Diseño web + Traducción ES/AR</p>
+          </div>
+        </div>
+        <div class="portfolio-meta">
+          <h3>Sitio Corporativo Bilingüe</h3>
+          <span>Diseño Web · Traducción</span>
+        </div>
+      </div>
+      <div class="portfolio-item reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-pattern"></div>
+          <div class="portfolio-thumb-inner">◈</div>
+          <div class="portfolio-overlay">
+            <h3>Landing Page E-commerce</h3>
+            <p>Diseño UI/UX · HTML/CSS</p>
+          </div>
+        </div>
+        <div class="portfolio-meta">
+          <h3>Landing Page E-commerce</h3>
+          <span>Diseño UI · HTML/CSS</span>
+        </div>
+      </div>
+      <div class="portfolio-item reveal">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-pattern"></div>
+          <div class="portfolio-thumb-inner">⬡</div>
+          <div class="portfolio-overlay">
+            <h3>Localización de App</h3>
+            <p>Traducción EN/AR/ES</p>
+          </div>
+        </div>
+        <div class="portfolio-meta">
+          <h3>Localización de App</h3>
+          <span>Traducción · Localización</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+
+  <section class="languages" id="idiomas">
+    <div class="reveal">
+      <p class="section-label">Competencias lingüísticas</p>
+      <h2 class="section-title">Cuatro idiomas,<br /><em>un solo mensaje</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="lang-grid" style="grid-template-columns: repeat(2,1fr);">
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇸🇦</div>
+        <h3 class="lang-name">العربية</h3>
+        <p class="lang-native">Árabe · Lengua nativa</p>
+        <p class="lang-desc">Hablante nativa de árabe. Comunicación perfecta con clientes del mundo árabe y creación de contenido auténtico.</p>
+        <div class="lang-level"><div class="lang-level-fill" style="width:100%"></div></div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇪🇸</div>
+        <h3 class="lang-name">Español</h3>
+        <p class="lang-native">Nivel avanzado</p>
+        <p class="lang-desc">Dominio avanzado del español para diseño, comunicación con clientes y creación de contenido profesional.</p>
+        <div class="lang-level"><div class="lang-level-fill" style="width:90%"></div></div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇬🇧</div>
+        <h3 class="lang-name">English</h3>
+        <p class="lang-native">Intermediate level</p>
+        <p class="lang-desc">Good command of English for international clients, briefs and digital communication.</p>
+        <div class="lang-level"><div class="lang-level-fill" style="width:65%"></div></div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇫🇷</div>
+        <h3 class="lang-name">Français</h3>
+        <p class="lang-native">Niveau intermédiaire</p>
+        <p class="lang-desc">Bonne maîtrise du français pour communiquer avec des clients francophones et créer du contenu digital.</p>
+        <div class="lang-level"><div class="lang-level-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="sobre-mi">
+    <div class="about-visual reveal">
+      <div class="about-quote-block">
+        <p class="about-quote">
+          "El diseño web es mi pasión y mi profesión. Cada página que creo lleva mi sello personal y mi dedicación."
+        </p>
+        <p class="about-quote-author">— Mi filosofía de trabajo</p>
+      </div>
+      <div class="about-accent-box">✦</div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-label">Sobre mí</p>
+      <h2 class="section-title">Diseñadora web <em>certificada</em> y creadora digital</h2>
+      <div class="divider"></div>
+      <p class="about-desc">
+        Soy Mariem Ben Blal, diseñadora web certificada desde 2024 y creadora de contenido digital. Me especializo en crear páginas web profesionales, atractivas y funcionales adaptadas a las necesidades de cada cliente.
+      </p>
+      <p class="about-desc">
+        Hablo árabe de forma nativa, español a nivel avanzado, inglés y francés a nivel medio — lo que me permite trabajar con clientes de diferentes países y culturas sin barreras.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">Idiomas</div>
+        </div>
+        <div>
+          <div class="stat-num">2024</div>
+          <div class="stat-label">Certificada</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Dedicación</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contacto">
+    <p class="section-label reveal">Hablemos</p>
+    <h2 class="section-title reveal">¿Tienes un <em>proyecto</em> en mente?</h2>
+    <div class="divider reveal"></div>
+    <p class="contact-desc reveal">
+      Estoy disponible para proyectos de diseño web y creación de contenido. Escríbeme y encontramos la mejor solución para tu negocio.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:tu@email.com" class="contact-link">
+        ✉ tu@email.com
+      </a>
+      <a href="https://linkedin.com" class="contact-link" target="_blank">
+        in LinkedIn
+      </a>
+      <a href="https://wa.me/34000000000" class="contact-link" target="_blank">
+        ✆ WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <a href="#" class="footer-logo">M.B.B.</a>
+    <p>© 2026 · Mariem Ben Blal · Diseñadora Web · AR · ES · EN · FR</p>
+    <p>Hecho con ✦</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cursor.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+
+    // Smooth nav active
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
 
 </body>
 </html>
