@@ -663,17 +663,48 @@ footer p {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  nav { padding: 1.2rem 2rem; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.7rem; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; min-height: auto; }
   .hero-text { padding-right: 0; }
   .hero-visual { display: none; }
-  section { padding: 5rem 2rem; }
-  .services-grid { grid-template-columns: 1fr; }
+  .hero-name { font-size: clamp(2.8rem, 10vw, 4rem); }
+  .hero-title { font-size: 1rem; }
+  .hero-desc { font-size: 0.9rem; }
+  .hero-langs { gap: 0.5rem; }
+  .lang-badge { font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+  .hero-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .btn-primary { width: 100%; text-align: center; padding: 1rem; }
+  section { padding: 4rem 1.5rem; }
+  .section-title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .service-card { padding: 2rem 1.5rem; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-item:first-child { grid-row: auto; }
-  .lang-grid { grid-template-columns: 1fr; }
-  .about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
-  footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .portfolio-thumb { aspect-ratio: 16/9 !important; }
+  .lang-grid { grid-template-columns: 1fr 1fr !important; gap: 1rem; }
+  .lang-card { padding: 1.5rem; }
+  .lang-name { font-size: 1.4rem; }
+  .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+  .about-quote { font-size: 1.1rem; }
+  .about-stats { gap: 1.5rem; }
+  .stat-num { font-size: 2.2rem; }
+  .contact { padding: 4rem 1.5rem; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .contact-link { width: 100%; justify-content: center; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .cursor, .cursor-ring { display: none; }
+}
+@media (max-width: 480px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { gap: 0.8rem; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: 0.08em; }
+  .hero { padding: 5.5rem 1.2rem 3rem; }
+  .hero-name { font-size: clamp(2.4rem, 12vw, 3rem); }
+  section { padding: 3.5rem 1.2rem; }
+  .lang-grid { grid-template-columns: 1fr !important; }
+  .about-stats { flex-direction: column; gap: 1rem; }
 }
 ```
 
@@ -976,14 +1007,14 @@ footer p {
       Estoy disponible para proyectos de diseño web y creación de contenido. Escríbeme y encontramos la mejor solución para tu negocio.
     </p>
     <div class="contact-links reveal">
-      <a href="mailto:tu@email.com" class="contact-link">
-        ✉ tu@email.com
+      <a href="mailto:mariembenblal9@gmail.com" class="contact-link">
+        ✉ mariembenblal9@gmail.com
       </a>
-      <a href="https://linkedin.com" class="contact-link" target="_blank">
-        in LinkedIn
+      <a href="https://wa.me/34612586006" class="contact-link" target="_blank">
+        ✆ WhatsApp +34 612 586 006
       </a>
-      <a href="https://wa.me/34000000000" class="contact-link" target="_blank">
-        ✆ WhatsApp
+      <a href="https://instagram.com/Mariem_ben_blal" class="contact-link" target="_blank">
+        ◈ Instagram @Mariem_ben_blal
       </a>
     </div>
   </section>
